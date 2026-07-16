@@ -16,7 +16,7 @@ def concatenate_csv(input_folder):
     combined_df = pd.concat((pd.read_csv(f) for f in all_files), ignore_index=True)
     
         # Group by 'task_id' and save each group as a separate CSV
-    for task_id, group in combined_df.groupby('task_id'):
+    for task_id, group in combined_df.groupby('TaskPrompt'):
         group.to_csv(processed_data_path / f'task_{task_id}.csv', index=False)
         
 
@@ -44,5 +44,3 @@ def save_response_text_only(concatenated_file_path):
     response_text_df.to_csv(output_path, index=False, header=False)
 
     print(f"Response text saved to {output_path}")
-
-
